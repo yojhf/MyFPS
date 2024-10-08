@@ -9,6 +9,7 @@ namespace MyFPS
     public class DoorCon : MonoBehaviour
     {
         [SerializeField] private GameObject actionUI;
+        [SerializeField] private GameObject crossHair;
         [SerializeField] private string actionText = "Open the Door";
         [SerializeField] private Transform soundObject;
         public bool isOpen = false;
@@ -32,6 +33,7 @@ namespace MyFPS
             if(RayCon.length <= 2f)
             {
                 actionUI.SetActive(true);
+                crossHair.SetActive(true);
                 actionUI.transform.GetChild(1).GetComponent<TMP_Text>().text = actionText;
 
                 if(Input.GetButtonDown("Action"))
@@ -40,12 +42,14 @@ namespace MyFPS
                     transform.GetComponent<Collider>().enabled = false;
                     soundObject.GetComponent<AudioSource>().Play();
                     actionUI.SetActive(false);
+                    crossHair.SetActive(false);
                 }
             }
         }
         private void OnMouseExit()
         {
             actionUI.SetActive(false);
+            crossHair.SetActive(false);
         }
 
         void DoorOpen()

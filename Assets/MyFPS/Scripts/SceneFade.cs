@@ -24,28 +24,35 @@ namespace MyFPS
         {
             fadeImage.color = new Color(0f, 0f, 0f, 255f);
 
-            if(fadeImage.gameObject.activeSelf == false)
+            if (fadeImage.gameObject.activeSelf == false)
             {
                 fadeImage.gameObject.SetActive(true);
-                FadeIn(null);
+                //FadeIn(null);
             }
 
         }
 
-        public void FadeIn(string name)
+        public void FadeIn(string name, float delay = 0f)
         {
-            StartCoroutine(FadeIn_Co(name));
+            StartCoroutine(FadeIn_Co(name, delay));
         }
 
-        public void FadeOut(string name)
+        public void FadeOut(string name, float delay = 0f)
         {
-            StartCoroutine(FadeOut_Co(name));
+            StartCoroutine(FadeOut_Co(name, delay));
         }
 
-        IEnumerator FadeIn_Co(string name)
+        IEnumerator FadeIn_Co(string name, float delay)
         {
             float time = 1f;
             float ctime = 0f;
+
+            if(delay > 0f)
+            {
+                yield return new WaitForSeconds(delay);
+            }
+
+     
 
             while (ctime < time)
             {
@@ -63,10 +70,15 @@ namespace MyFPS
 
         }
 
-        IEnumerator FadeOut_Co(string name)
+        IEnumerator FadeOut_Co(string name, float delay)
         {
             float time = 1f;
             float ctime = 0f;
+
+            if (delay > 0f)
+            {
+                yield return new WaitForSeconds(delay);
+            }
 
             while (ctime < time)
             {
