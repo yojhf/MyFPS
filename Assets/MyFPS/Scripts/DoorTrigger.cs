@@ -6,8 +6,12 @@ namespace MyFPS
 {
     public class DoorTrigger : MonoBehaviour
     {
-        [SerializeField] private GameObject player;
+        [SerializeField] private GameObject enemy;
         [SerializeField] private GameObject door;
+
+        public AudioSource doorBang;
+        public AudioSource jumpScare;
+
         Animator animator;
         // Start is called before the first frame update
         void Start()
@@ -25,13 +29,17 @@ namespace MyFPS
 
         IEnumerator DoorOpen()
         {
-            player.SetActive(false);
+            animator.SetBool("isOpen", true);
+            transform.GetComponent<Collider>().enabled = false;
+
+            doorBang.Play();
+
+            enemy.SetActive(true);
 
             yield return new WaitForSeconds(1f);
 
-            animator.SetBool("isOpen", true);
-            player.SetActive(true);
-            Destroy(gameObject);
+            jumpScare.Play();
+
         }
     }
 }
