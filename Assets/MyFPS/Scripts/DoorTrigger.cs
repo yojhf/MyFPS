@@ -40,6 +40,8 @@ namespace MyFPS
 
             jumpScare.Play();
 
+            Destroy(gameObject);
+
         }
     }
 }

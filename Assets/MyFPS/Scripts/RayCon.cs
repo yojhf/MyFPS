@@ -54,6 +54,7 @@ namespace MyFPS
 
         private void OnDrawGizmosSelected()
         {
+            float maxdis = 100f;
             RaycastHit hit;
             Gizmos.color = Color.red;
             bool isHit = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit);
@@ -64,7 +65,7 @@ namespace MyFPS
             }
             else
             {
-                Gizmos.DrawRay(transform.position, transform.forward * length);
+                Gizmos.DrawRay(transform.position, transform.forward * maxdis);
             }
         }
     }
