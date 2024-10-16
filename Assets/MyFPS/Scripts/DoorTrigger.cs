@@ -40,7 +40,20 @@ namespace MyFPS
 
             jumpScare.Play();
 
+            EnemyWalk();
+
             Destroy(gameObject);
+
+        }
+
+        void EnemyWalk()
+        {
+            RobotCon robotCon = enemy.transform.GetComponent<RobotCon>();
+
+            if (robotCon != null)
+            {
+                robotCon.SetState(RobotState.R_Walk);
+            }
 
         }
     }

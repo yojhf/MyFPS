@@ -15,6 +15,9 @@ namespace MyFPS
 
         private float fireDelay = 1f;
         private bool isFire = false;
+
+        [SerializeField] private float attackDamage = 5f;
+
         Animator animator;
 
         // Start is called before the first frame update
@@ -43,6 +46,14 @@ namespace MyFPS
 
             if (Physics.Raycast(firePoint.position, firePoint.TransformDirection(Vector3.forward), out hit, maxdis))
             {
+
+                RobotCon robotCon = hit.transform.GetComponent<RobotCon>();
+
+                if (robotCon != null)
+                {
+                    robotCon.TakeDamage(attackDamage);
+                }
+
 
             }
 
