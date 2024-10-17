@@ -7,13 +7,16 @@ namespace MyFPS
 {
     public class PistolShoot : MonoBehaviour
     {
+        [SerializeField] private Transform hitEffect;
+        [SerializeField] private float impactForce = 5f;
+
         public ParticleSystem pistolFire;
         public AudioSource shootSound;
 
         //public Transform camera;
         public Transform firePoint;
 
-        private float fireDelay = 1f;
+        private float fireDelay = 0.5f;
         private bool isFire = false;
 
         [SerializeField] private float attackDamage = 5f;
@@ -31,7 +34,11 @@ namespace MyFPS
         {
             if(Input.GetMouseButtonDown(0) && isFire == false)
             {
-                StartCoroutine(Shoot());
+                if(PlayerStats.Instance.AmmoCount > 0)
+                {
+                    StartCoroutine(Shoot());
+                }
+
                 
             }
         }
@@ -44,14 +51,24 @@ namespace MyFPS
 
             RaycastHit hit;
 
+            PlayerStats.Instance.UseAmmo();
+
             if (Physics.Raycast(firePoint.position, firePoint.TransformDirection(Vector3.forward), out hit, maxdis))
             {
+                Transform tmp_effect = Instantiate(hitEffect, hit.point, Quaternion.identity);
 
-                RobotCon robotCon = hit.transform.GetComponent<RobotCon>();
+                Destroy(tmp_effect.gameObject, 2f);
 
-                if (robotCon != null)
+                if (hit.rigidbody != null)
                 {
-                    robotCon.TakeDamage(attackDamage);
+                    hit.rigidbody.AddForce(-hit.normal * impactForce, ForceMode.Impulse);
+                }
+
+                IDamage iDamage = hit.transform.GetComponent<IDamage>();
+
+                if (iDamage != null)
+                {
+                    iDamage.TakeDamage(attackDamage);
                 }
 
 

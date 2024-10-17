@@ -14,7 +14,7 @@ namespace MyFPS
     }
 
 
-    public class RobotCon : MonoBehaviour
+    public class RobotCon : MonoBehaviour, IDamage
     {
         public GameObject player;
 

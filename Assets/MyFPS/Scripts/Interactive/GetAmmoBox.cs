@@ -1,24 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace MyFPS
 {
-    public class GetPistol : Interactive
+    public class GetAmmoBox : Interactive
     {
-        [SerializeField] private GameObject playerPistol;
+        [SerializeField] private GameObject ammoBoxUI;
         [SerializeField] private GameObject arrow;
-        [SerializeField] private GameObject enemyTrigger;
+        [SerializeField] private int ammoCount = 7;
         protected override void Action()
         {
             base.Action();
-            playerPistol.SetActive(true);
+            ammoBoxUI.SetActive(true);
             arrow.SetActive(false);
-            enemyTrigger.SetActive(true);
+            PlayerStats.Instance.GetAmmo(ammoCount);
 
             Destroy(gameObject);
         }
-
     }
 }
