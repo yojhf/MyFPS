@@ -34,7 +34,7 @@ namespace MyFPS
             actionUI.SetActive(true);
             crossHair.SetActive(true);
             actionUI.transform.GetChild(1).GetComponent<TMP_Text>().text = actionText;
-        }
+        }   
 
         protected virtual void Action()
         {

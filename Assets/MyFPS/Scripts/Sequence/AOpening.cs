@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using StarterAssets;
 
 namespace MyFPS
 {
@@ -10,6 +11,10 @@ namespace MyFPS
         [SerializeField] private GameObject player;
         [SerializeField] private TMP_Text openingText;
         [SerializeField] private string opening_text = "I need get out of here";
+        [SerializeField] private string opening_text_2 = "... Where am i?";
+
+        public AudioSource line01;
+        public AudioSource line02;
 
         // Start is called before the first frame update
         void Start()
@@ -27,15 +32,23 @@ namespace MyFPS
             //3. 3초후에 시나리오 텍스트 없어진다
             //4.플레이 캐릭터 활성화
 
-            player.SetActive(false);
-            openingText.text = opening_text;
+            //player.SetActive(false);
+            player.transform.GetComponent<FirstPersonController>().enabled = false;
+            SceneFade.instance.FadeIn(null, 4f);
             openingText.gameObject.SetActive(true);
-            SceneFade.instance.FadeIn(null, 1f);
+            openingText.text = opening_text_2;
+            line01.Play();
+
+            yield return new WaitForSeconds(3f);
+
+            openingText.text = opening_text;
+            line02.Play();
 
             yield return new WaitForSeconds(3f);
 
             openingText.gameObject.SetActive(false);
-            player.SetActive(true);
+            player.transform.GetComponent<FirstPersonController>().enabled = true;
+            //player.SetActive(true);
         }
     }
 }

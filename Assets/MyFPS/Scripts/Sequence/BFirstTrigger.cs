@@ -1,4 +1,5 @@
 using Sample;
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,14 +15,16 @@ namespace MyFPS
         [SerializeField] private string opening_text = "Looks like a weapon on that table.";
 
 
+        public AudioSource line03;
 
 
         IEnumerator FirstTrigger()
         {
-            player.SetActive(false);
+            player.transform.GetComponent<FirstPersonController>().enabled = false;
 
             openingText.text = opening_text;
             openingText.gameObject.SetActive(true);
+            line03.Play();
 
             yield return new WaitForSeconds(1f);
 
@@ -31,8 +34,10 @@ namespace MyFPS
 
             openingText.text = "";
             openingText.gameObject.SetActive(false);
-            player.SetActive(true);
+            player.transform.GetComponent<FirstPersonController>().enabled = true;
             GetComponent<Collider>().enabled = false;
+            Destroy(gameObject);
+ 
         }
 
         private void OnTriggerEnter(Collider other)

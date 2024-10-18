@@ -11,6 +11,7 @@ namespace MyFPS
 
         public AudioSource doorBang;
         public AudioSource jumpScare;
+        public AudioSource mainBgm;
 
         Animator animator;
         // Start is called before the first frame update
@@ -32,11 +33,13 @@ namespace MyFPS
             animator.SetBool("isOpen", true);
             transform.GetComponent<Collider>().enabled = false;
 
+            mainBgm.Stop();
             doorBang.Play();
 
             enemy.SetActive(true);
 
             yield return new WaitForSeconds(1f);
+
 
             jumpScare.Play();
 

@@ -1,4 +1,4 @@
-namespace MyDefence
+namespace MyFPS
 {
     public class PersistentSingleton<T> : Singleton<T> where T : Singleton<T>
     {

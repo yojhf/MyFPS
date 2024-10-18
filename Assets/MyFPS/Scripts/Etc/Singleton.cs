@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 
 
-namespace MyDefence
+namespace MyFPS
 {
     public class Singleton <T> : MonoBehaviour where T : Singleton<T>
     {

@@ -34,7 +34,8 @@ namespace MyFPS
         [SerializeField] private float attackTimer = 2f;
         private float countDown;
 
-       
+        public AudioSource jumpScare;
+        public AudioSource mainBgm;
 
         Animator animator;
 
@@ -121,11 +122,11 @@ namespace MyFPS
         {
             isDeath = true;
 
+            jumpScare.Stop();
+            mainBgm.Play();
+
             SetState(RobotState.R_Death);
             transform.GetComponent<Collider>().enabled = false;
-
-            
-
         }
 
         void Move()
