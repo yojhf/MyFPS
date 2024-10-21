@@ -29,8 +29,9 @@ namespace MyFPS
         }
         public void Menu()
         {
-            //SceneFade.instance.FadeOut(menuScene);
-            //Time.timeScale = 1.0f;
+            gameObject.SetActive(false);
+            SceneFade.instance.FadeOut(menuScene);
+            Time.timeScale = 1.0f;
         }
         public void Continue()
         {

@@ -26827,6 +26827,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4426186398086892086, guid: a6d999bb5a8521e429e406c64d07820c,
+        type: 3}
+      propertyPath: startFadeIn
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

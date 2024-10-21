@@ -15,6 +15,8 @@ namespace MyFPS
         [SerializeField] private Image fadeImage;
         public AnimationCurve fadeCurve;
 
+        public bool startFadeIn = true;
+
         private void Awake()
         {
             instance = this;
@@ -27,7 +29,12 @@ namespace MyFPS
             if (fadeImage.gameObject.activeSelf == false)
             {
                 fadeImage.gameObject.SetActive(true);
-                //FadeIn(null);
+
+                if (startFadeIn == true)
+                {
+                    FadeIn(null);
+                }
+
             }
 
         }
