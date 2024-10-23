@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MyFPS
 {
@@ -22,7 +23,7 @@ namespace MyFPS
 
         public void Retry()
         {
-            SceneFade.instance.FadeOut(playScene);
+            SceneFade.instance.FadeOut(SceneManager.GetActiveScene().name);
             // 일시정시 원복
             Time.timeScale = 1.0f;
 

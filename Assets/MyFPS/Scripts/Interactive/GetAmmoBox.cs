@@ -13,7 +13,12 @@ namespace MyFPS
         {
             base.Action();
             ammoBoxUI.SetActive(true);
-            arrow.SetActive(false);
+
+            if(arrow != null)
+            {
+                arrow.SetActive(false);
+            }
+
             PlayerStats.Instance.GetAmmo(ammoCount);
 
             Destroy(gameObject);

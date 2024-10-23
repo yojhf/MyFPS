@@ -22,22 +22,27 @@ namespace MyFPS
 
         public void NewGame()
         {
+            SoundManager.Instance.PlayBgm("BtnSound");
             SceneFade.instance.FadeOut(playScene);
         }
         public void LoadGame()
         {
+            SoundManager.Instance.PlayBgm("BtnSound");
             Debug.Log("LoadGame");
         }
         public void Options()
         {
+            SoundManager.Instance.PlayBgm("BtnSound");
             Debug.Log("Options");
         }
         public void Credits()
         {
+            SoundManager.Instance.PlayBgm("BtnSound");
             Debug.Log("Credits");
         }
         public void QuitGame()
         {
+            SoundManager.Instance.PlayBgm("BtnSound");
             SceneFade.instance.FadeOut(null);
 
             Invoke("Quit", 1f);
