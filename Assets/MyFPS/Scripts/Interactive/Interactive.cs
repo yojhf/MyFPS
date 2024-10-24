@@ -11,13 +11,16 @@ namespace MyFPS
         [SerializeField] protected GameObject crossHair;
         [SerializeField] protected string actionText;
 
+        // true이면 Interactive 기능 정지
+        protected bool unInteractive = false;
+
         private void OnMouseOver()
         {
             if (RayCon.length <= 2f)
             {
                 ActiveTrigger();
 
-                if (Input.GetButtonDown("Action"))
+                if (Input.GetButtonDown("Action") && unInteractive == false)
                 {
                     Action();
                 }

@@ -66,3 +66,24 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     playOnAwake: 0
+  - name: PotterySmash
+    audioSource: {fileID: 0}
+    clip: {fileID: 8300000, guid: 843a9cd7ebb22e34fb67a7174d2dd3ab, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - name: DoorLocked
+    audioSource: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5b6ed711e4ca752439872f6010745e79, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - name: DoorBang
+    audioSource: {fileID: 0}
+    clip: {fileID: 8300000, guid: 49ba5dd4266e8fb47b2a82c054842698, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0

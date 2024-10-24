@@ -61,7 +61,7 @@ namespace MyFPS
 
                 if (hit.rigidbody != null)
                 {
-                    hit.rigidbody.AddForce(-hit.normal * impactForce, ForceMode.Impulse);
+                    hit.rigidbody.AddForce(-hit.normal * impactForce, ForceMode.Impulse);            
                 }
 
                 IDamage iDamage = hit.transform.GetComponent<IDamage>();
@@ -70,8 +70,6 @@ namespace MyFPS
                 {
                     iDamage.TakeDamage(attackDamage);
                 }
-
-
             }
 
             pistolFire.gameObject.SetActive(true);

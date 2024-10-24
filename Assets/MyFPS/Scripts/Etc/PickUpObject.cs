@@ -6,9 +6,9 @@ namespace MyFPS
 {
     public class PickUpObject : MonoBehaviour
     {
-        [SerializeField] private float time = 4f;
         [SerializeField] private float speed = 2.0f;
         [SerializeField] private float rotSpeed = 360f;
+        [SerializeField] private float pos = 1f;
 
 
         private Vector3 startPos;
@@ -29,7 +29,7 @@ namespace MyFPS
         {
             float bobingAnimationPhase = Mathf.Sin(Time.time * speed);
 
-            transform.position = startPos + (Vector3.up * bobingAnimationPhase);
+            transform.position = startPos + (Vector3.up * bobingAnimationPhase) / pos;
 
             transform.Rotate(Vector3.up, rotSpeed * Time.deltaTime, Space.World);
         }
