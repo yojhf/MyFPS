@@ -11,6 +11,7 @@ namespace MyFPS
         Room01_Key,
         Room02_Key,
         Room03_Key,
+        LeftEye,
         Max_Key         // ∆€¡Ò æ∆¿Ã≈€ ∞πºˆ
     }
 
