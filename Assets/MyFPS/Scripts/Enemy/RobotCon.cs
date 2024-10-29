@@ -22,31 +22,31 @@ namespace MyFPS
 
         private RobotState beforeState;
 
-        [SerializeField] private float maxHealth = 20f;
-        private float currentHealth;
+        [SerializeField] protected float maxHealth = 20f;
+        protected float currentHealth;
 
-        private bool isDeath = false;
+        protected bool isDeath = false;
 
-        [SerializeField] private float moveSpeed = 2f;
+        [SerializeField] protected float moveSpeed = 2f;
 
-        [SerializeField] private float attackRange = 1.5f;
-        [SerializeField] private float attackDamage = 5f;
+        [SerializeField] protected float attackRange = 1.5f;
+        [SerializeField] protected float attackDamage = 5f;
         [SerializeField] private float attackTimer = 2f;
         private float countDown;
 
         public AudioSource jumpScare;
         public AudioSource mainBgm;
 
-        Animator animator;
+        protected Animator animator;
 
         // Start is called before the first frame update
-        void Start()
+        protected virtual void Start()
         {
             Init();
         }
 
         // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
             if(isDeath == true)
             {
@@ -56,7 +56,7 @@ namespace MyFPS
             ChangeState();
         }
 
-        void Init()
+        protected virtual void Init()
         {
             animator = GetComponent<Animator>();
 
@@ -65,7 +65,7 @@ namespace MyFPS
             currentHealth = maxHealth;
         }
 
-        void ChangeState()
+        protected virtual void ChangeState()
         {
             float distance = Vector3.Distance(player.transform.position, transform.position);
 
@@ -118,7 +118,7 @@ namespace MyFPS
             }
         }
 
-        void Die()
+        protected virtual void Die()
         {
             isDeath = true;
 
@@ -136,7 +136,7 @@ namespace MyFPS
             transform.Translate(dir.normalized * Time.deltaTime * moveSpeed, Space.World);    
         }
 
-        void RobotRot()
+        protected void RobotRot()
         {
             transform.LookAt(player.transform.position);
         }

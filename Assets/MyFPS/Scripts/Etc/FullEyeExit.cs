@@ -57,6 +57,8 @@ namespace MyFPS
             tMP_Text.gameObject.SetActive(true);
             tMP_Text.text = lockText;
 
+
+
             yield return new WaitForSeconds(2f);
 
             tMP_Text.gameObject.SetActive(false);
