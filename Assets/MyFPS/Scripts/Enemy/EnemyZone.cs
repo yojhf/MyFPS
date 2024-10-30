@@ -6,30 +6,28 @@ namespace MyFPS
 {
     public class EnemyZone : MonoBehaviour
     {
+        public EnemyState enemyState;
+
         public Transform enemyGun;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        public GameObject enemyZoneOut;
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
             {
-                EnemyGunCon enemyGunCon = enemyGun.GetComponent<EnemyGunCon>();
-
-                if(enemyGunCon != null)
+                if(enemyGun != null)
                 {
-                    enemyGunCon.E_SetState(EnemyState.E_Chase);
+                    EnemyGunCon enemyGunCon = enemyGun.GetComponent<EnemyGunCon>();
+
+                    if (enemyGunCon != null)
+                    {
+                        enemyGunCon.E_SetState(enemyState);
+                        enemyZoneOut.SetActive(true);
+                        gameObject.SetActive(false);
+                    }
                 }
+
+             
 
 
             }

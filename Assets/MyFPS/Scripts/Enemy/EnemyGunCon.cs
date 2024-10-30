@@ -27,13 +27,23 @@ namespace MyFPS
 
         private Vector3 startPos;
 
+        public float SearchRange = 5f;
+
+        private bool isAiming = false;
+
+        public bool IsAiming
+        {
+            get 
+            {
+                return isAiming;
+            }
+            set
+            {
+                isAiming = value;
+            }
+        }
+
         NavMeshAgent agent;
-
-
-        //protected override void Update()
-        //{
-        //    base.Update();
-        //}
 
         protected override void Init()
         {
@@ -72,10 +82,24 @@ namespace MyFPS
         {
             float distance = Vector3.Distance(player.transform.position, transform.position);
 
+            if(SearchRange > 0)
+            {
+                IsAiming = distance <= SearchRange;
+            }
+
             if (distance <= attackRange)
             {
                 E_SetState(EnemyState.E_Attack);
             }
+            else if (IsAiming)
+            {
+                E_SetState(EnemyState.E_Chase);
+            }
+            else if (!IsAiming)
+            {
+                E_SetState(EnemyState.E_Walk);
+            }
+
 
             switch (enemyState)
             {
@@ -99,7 +123,13 @@ namespace MyFPS
                         E_SetState(EnemyState.E_Chase);
                     }
                     break;
-                case EnemyState.E_Chase:
+                case EnemyState.E_Chase:    
+                    
+                    //if(SearchRange > 0 && !IsAiming)
+                    //{
+                    //    GoNextPoint();
+                    //}
+
                     agent.SetDestination(player.transform.position);
                     break;
 
@@ -108,10 +138,13 @@ namespace MyFPS
 
         protected override void Die()
         {
+            transform.GetComponent<Collider>().enabled = false;
+
             isDeath = true;
 
             E_SetState(EnemyState.E_Death);
-            transform.GetComponent<Collider>().enabled = false;
+
+            Destroy(gameObject, 3f);
         }
 
         public void E_SetState(EnemyState state)
@@ -149,6 +182,18 @@ namespace MyFPS
             }
 
             agent.SetDestination(wayPoints[nowWayPoint].position);
+        }
+
+
+        private void OnDrawGizmosSelected()
+        {
+            if (transform == null)
+            {
+                return;
+            }
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, SearchRange);
         }
     }
 }

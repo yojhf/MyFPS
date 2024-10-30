@@ -23,7 +23,7 @@ namespace MyFPS
         }
         public void Menu()
         {
-            
+            SceneFade.instance.FadeOut("MainMenu");
         }
     }
 }
