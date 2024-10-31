@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 // 오디오를 관리하는 클래스
 namespace MyFPS
@@ -17,6 +18,7 @@ namespace MyFPS
             get { return bgmSound; }
         }
 
+        public AudioMixer audioMixer;
 
         protected override void Awake()
         {
@@ -38,6 +40,8 @@ namespace MyFPS
 
         void Init()
         {
+            AudioMixerGroup[] audioMixers = audioMixer.FindMatchingGroups("Master");
+
             foreach (var sound in sounds)
             {
                 soundsDic.Add(sound.name, sound);
@@ -48,6 +52,18 @@ namespace MyFPS
                 sound.audioSource.volume = sound.volume;
                 sound.audioSource.pitch = sound.pitch;
                 sound.audioSource.loop = sound.loop;
+
+
+                if (sound.loop)
+                {
+                    sound.audioSource.outputAudioMixerGroup = audioMixers[1];
+                }
+                else
+                {
+                    sound.audioSource.outputAudioMixerGroup = audioMixers[2];
+                }
+
+
             }
         }
 
