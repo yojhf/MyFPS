@@ -40,29 +40,34 @@ namespace MyFPS
 
         void Init()
         {
-            AudioMixerGroup[] audioMixers = audioMixer.FindMatchingGroups("Master");
-
-            foreach (var sound in sounds)
+            if(audioMixer != null)
             {
-                soundsDic.Add(sound.name, sound);
-
-                sound.audioSource = this.gameObject.AddComponent<AudioSource>();
-
-                sound.audioSource.clip = sound.clip;
-                sound.audioSource.volume = sound.volume;
-                sound.audioSource.pitch = sound.pitch;
-                sound.audioSource.loop = sound.loop;
+                AudioMixerGroup[] audioMixers = audioMixer.FindMatchingGroups("Master");
+      
 
 
-                if (sound.loop)
+
+                foreach (var sound in sounds)
                 {
-                    sound.audioSource.outputAudioMixerGroup = audioMixers[1];
-                }
-                else
-                {
-                    sound.audioSource.outputAudioMixerGroup = audioMixers[2];
-                }
+                    soundsDic.Add(sound.name, sound);
 
+                    sound.audioSource = this.gameObject.AddComponent<AudioSource>();
+
+                    sound.audioSource.clip = sound.clip;
+                    sound.audioSource.volume = sound.volume;
+                    sound.audioSource.pitch = sound.pitch;
+                    sound.audioSource.loop = sound.loop;
+
+
+                    if (sound.loop)
+                    {
+                        sound.audioSource.outputAudioMixerGroup = audioMixers[1];
+                    }
+                    else
+                    {
+                        sound.audioSource.outputAudioMixerGroup = audioMixers[2];
+                    }
+                }
 
             }
         }
