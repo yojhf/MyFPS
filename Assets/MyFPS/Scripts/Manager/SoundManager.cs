@@ -160,5 +160,10 @@ namespace MyFPS
 
             sound.audioSource.Play();
         }
+
+        public void StopBgm()
+        {
+            Stop(bgmSound);
+        }
     }
 }

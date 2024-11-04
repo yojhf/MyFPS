@@ -39,6 +39,8 @@ namespace MyFPS
         {
 
             PlayerStats.Instance.PlayerStatInit(null);
+            SoundManager.Instance.StopBgm();
+
 
             SoundManager.Instance.Play("BtnSound");
             SceneFade.instance.FadeOut(playScene);
@@ -95,7 +97,11 @@ namespace MyFPS
 
         public void DataReset()
         {
-            PlayerPrefs.DeleteAll();
+
+            PlayerStats.Instance.PlayerStatInit(null);
+            SaveLoad.SaveData();
+
+            SceneFade.instance.FadeOut("MainMenu");
         }
 
 

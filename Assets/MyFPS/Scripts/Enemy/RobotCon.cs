@@ -39,6 +39,8 @@ namespace MyFPS
 
         protected Animator animator;
 
+        private bool isAttack = false;
+
         // Start is called before the first frame update
         protected virtual void Start()
         {
@@ -80,11 +82,11 @@ namespace MyFPS
 
                     break;
                 case RobotState.R_Walk:
-                    Move();
-                    RobotRot();
+                        Move();
+                        RobotRot();                 
                     break;
                 case RobotState.R_Attack:
-                    if (distance > attackRange)
+                    if (distance > attackRange && isAttack == false)
                     {
                         SetState(RobotState.R_Walk);
                     }
