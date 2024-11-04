@@ -32,7 +32,7 @@ namespace MyFPS
         // Update is called once per frame
         void Update()
         {
-            if(Input.GetMouseButtonDown(0) && isFire == false)
+            if(Input.GetMouseButtonDown(0) && isFire == false && UIManager.Instance.isPause == false)
             {
                 if(PlayerStats.Instance.AmmoCount > 0)
                 {

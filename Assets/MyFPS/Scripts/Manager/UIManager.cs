@@ -11,7 +11,7 @@ namespace MyFPS
         [SerializeField] private Transform pauseUI;
         [SerializeField] private GameObject player;
 
-        private bool isPause = false;
+        public bool isPause = false;
         private float timeScale = 0;
 
         // Start is called before the first frame update
