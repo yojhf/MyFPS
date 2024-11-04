@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -97,9 +98,11 @@ namespace MyFPS
 
         public void DataReset()
         {
+            //PlayerStats.Instance.PlayerStatInit(null);
+            //SaveLoad.SaveData();
+            string path = Application.persistentDataPath + "/playData";
 
-            PlayerStats.Instance.PlayerStatInit(null);
-            SaveLoad.SaveData();
+            File.Delete(path);
 
             SceneFade.instance.FadeOut("MainMenu");
         }
