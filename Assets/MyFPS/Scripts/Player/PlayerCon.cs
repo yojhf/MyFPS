@@ -19,9 +19,18 @@ namespace MyFPS
 
         [SerializeField] private string loadScene = "GameOver";
 
+        // ¹«±â
+        public GameObject realPistol;
+
+
         private void Start()
         {
             currentHealth = maxHealth;
+
+            if (PlayerStats.Instance.HasGun)
+            {
+                realPistol.SetActive(true);
+            }
         }
 
         public void TakeDamage(float damage)
@@ -29,6 +38,7 @@ namespace MyFPS
             currentHealth -= damage;
 
             StartCoroutine(DamageEffect());
+            CinemachinShake.Instance.PlayerHitEffect(1f, 1f, 1f);
 
             Debug.Log(currentHealth);
 

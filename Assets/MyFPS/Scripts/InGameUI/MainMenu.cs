@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace MyFPS
@@ -11,6 +12,7 @@ namespace MyFPS
         [SerializeField] private GameObject menuUI;
         [SerializeField] private GameObject optionUI;
         [SerializeField] private GameObject creditUI;
+        [SerializeField] private GameObject loadGame;
 
         [SerializeField] private string playScene = "PlayScene";
         
@@ -23,7 +25,8 @@ namespace MyFPS
         void Start()
         {
             SoundManager.Instance.PlayBgm("MenuBgm");
-            LoadOption();
+            InitGameData();
+
         }
 
         // Update is called once per frame
@@ -34,12 +37,18 @@ namespace MyFPS
 
         public void NewGame()
         {
+
+            PlayerStats.Instance.PlayerStatInit(null);
+
             SoundManager.Instance.Play("BtnSound");
             SceneFade.instance.FadeOut(playScene);
         }
         public void LoadGame()
         {
             SoundManager.Instance.Play("BtnSound");
+
+            SceneFade.instance.FadeOut(PlayerStats.Instance.SceneNum);
+
             Debug.Log("LoadGame");
         }
         public void Options()
@@ -84,6 +93,10 @@ namespace MyFPS
 #endif
         }
 
+        public void DataReset()
+        {
+            PlayerPrefs.DeleteAll();
+        }
 
 
         public void SetBgmVolume(float value)
@@ -110,5 +123,36 @@ namespace MyFPS
             sfxSlider.value = PlayerPrefs.GetFloat("SFXParam", 0);
             SetSfxVolume(sfxSlider.value);
         }
+
+
+
+        void LoadSceneCheck()
+        {
+            //int saveSceneNum = PlayerPrefs.GetInt("PlayerScene");
+
+            //Debug.Log(saveSceneNum);
+
+            Debug.Log(PlayerStats.Instance.SceneNum);
+
+            if (PlayerStats.Instance.SceneNum <= 0)
+            {
+                loadGame.SetActive(false);
+            }
+
+            
+        }
+
+        void InitGameData()
+        {
+            PlayerData playerData = SaveLoad.LoadData();
+
+            PlayerStats.Instance.PlayerStatInit(playerData);
+
+            LoadOption();
+            LoadSceneCheck();
+
+        }
+
+
     }
 }

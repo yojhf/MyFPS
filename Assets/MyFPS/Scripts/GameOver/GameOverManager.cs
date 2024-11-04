@@ -19,7 +19,7 @@ namespace MyFPS
 
         public void PlayScene()
         {
-            SceneFade.instance.FadeOut(playScene);
+            SceneFade.instance.FadeOut(PlayerStats.Instance.SceneNum);
         }
         public void Menu()
         {

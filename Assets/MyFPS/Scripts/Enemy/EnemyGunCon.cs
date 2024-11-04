@@ -118,9 +118,10 @@ namespace MyFPS
                     break;
                 case EnemyState.E_Attack:
                     RobotRot();
-                    if (distance > attackRange)
+                    if (distance >= attackRange)
                     {
                         E_SetState(EnemyState.E_Chase);
+                        agent.SetDestination(transform.position);
                     }
                     break;
                 case EnemyState.E_Chase:    

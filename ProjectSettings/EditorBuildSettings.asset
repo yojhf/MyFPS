@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/MyFPS/Scenes/Title.unity
     guid: 0d282c0ae746eb04c8a3051c19bf038a
   - enabled: 1
+    path: Assets/MyFPS/Scenes/Intro.unity
+    guid: e603e8f3d9992204d90693b88861b31a
+  - enabled: 1
     path: Assets/MyFPS/Scenes/MainMenu.unity
     guid: 0a5fdc728b5bd8a439a254e0219293fa
   - enabled: 1
@@ -16,7 +19,7 @@ EditorBuildSettings:
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/MyFPS/Scenes/PlayScene02.unity
-    guid: aaadfdd5224307b49b345e93e79361b6
+    guid: d5082d97b48775846858689d43746448
   - enabled: 1
     path: Assets/MyFPS/Scenes/GameOver.unity
     guid: 5ebeb5d8691f6fc448d43f22adeb80d9
